@@ -41,81 +41,81 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			  square.setBackground( i % 2 == 0 ? Color.white : Color.gray );
 			  }
 		  
-		  JLabel piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_rdt60.png") );
+		  JLabel piece = new JLabel( new ImageIcon("Chess_rdt60.png") );
 		  JPanel panel = (JPanel)chessBoard.getComponent(0);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_ndt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_ndt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(1);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_bdt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_bdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(2);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_kdt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_kdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(3);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qdt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_qdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(4);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_bdt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_bdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(5);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_ndt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_ndt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(6);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_rdt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_rdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(7);
 		  panel.add(piece);
 		  
 		  for (int i = 8; i < 16; i++)
 		  {
-			  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_pdt60.png") );
+			  piece = new JLabel( new ImageIcon("Chess_pdt60.png") );
 			  panel = (JPanel)chessBoard.getComponent(i);
 			  panel.add(piece);
 		  }
 		  
 		  for (int i = 48; i < 56; i++)
 		  {
-			  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_plt60.png") );
+			  piece = new JLabel( new ImageIcon("Chess_plt60.png") );
 			  panel = (JPanel)chessBoard.getComponent(i);
 			  panel.add(piece);
 		  }
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_rlt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_rlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(56);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_nlt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_nlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(57);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_blt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_blt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(58);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_klt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_klt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(59);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qlt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_qlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(60);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_blt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_blt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(61);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_nlt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_nlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(62);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_rlt60.png") );
+		  piece = new JLabel( new ImageIcon("Chess_rlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(63);
 		  panel.add(piece);
 	}
@@ -334,7 +334,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				
 				JPanel panel = (JPanel)chessBoard.getComponent(i);
 				panel.remove(0);
-				panel.add( new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qlt60.png") ));
+				panel.add( new JLabel( new ImageIcon("Chess_qlt60.png") ));
 				
 				board.addPiece(temp);
 			}
@@ -346,7 +346,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				
 				JPanel panel = (JPanel)chessBoard.getComponent(56 + i);
 				panel.remove(0);
-				panel.add( new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qdt60.png") ));
+				panel.add( new JLabel( new ImageIcon("Chess_qdt60.png") ));
 				
 				board.addPiece(temp);
 			}
