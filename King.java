@@ -39,7 +39,7 @@ public class King extends Piece{
 				moves.add(board.getSquare(x-1, y-1));
 			
 			//castle
-			if (!moved && !board.getSquare(x-1, y).isOccupied() && !board.getSquare(x-2, y).isOccupied() && !board.getSquare(x-3, y).getPiece().hasMoved())
+			if (!moved && isLegal(x-3, y) && board.getSquare(x-3, y).isOccupied() && !board.getSquare(x-1, y).isOccupied() && !board.getSquare(x-2, y).isOccupied() && !board.getSquare(x-3, y).getPiece().hasMoved())
 				moves.add(board.getSquare(x-2, y));
 			
 		return moves;

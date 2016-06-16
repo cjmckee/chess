@@ -182,6 +182,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			  if (castleFlag)
 				  castle(current.getColor());
 			  }
+			  upgrade();
 			  board.incrementTurn();
 		  }
 		  else {
@@ -213,6 +214,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				  Container parent = (Container)panel;
 				  parent.add( chessPiece );
 			  }
+			  upgrade();
 			  board.incrementTurn();
 			  chessPiece.setVisible(true);
 		  }
@@ -320,6 +322,34 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			panel.add(tempPiece);
 			
 			tempPiece.setVisible(true);
+		}
+	}
+	
+	public void upgrade() {
+		for (int i = 0; i < 8; i++) {
+			if (board.getSquare(i, 0).isOccupied() && board.getSquare(i, 0).getPiece().getType().equals("Pawn") && board.getSquare(i, 0).getPiece().getColor() == PieceColor.WHITE) {
+				Piece temp = new Queen(PieceColor.WHITE, i, 0);
+				board.take(board.getSquare(i, 0));
+				board.getSquare(i, 0).setPiece(temp);
+				
+				JPanel panel = (JPanel)chessBoard.getComponent(i);
+				panel.remove(0);
+				panel.add( new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qlt60.png") ));
+				
+				board.addPiece(temp);
+			}
+			
+			if (board.getSquare(i, 7).isOccupied() && board.getSquare(i, 7).getPiece().getType().equals("Pawn") && board.getSquare(i, 0).getPiece().getColor() == PieceColor.BLACK) {
+				Piece temp = new Queen(PieceColor.BLACK, i, 7);
+				board.take(board.getSquare(i, 7));
+				board.getSquare(i, 7).setPiece(temp);
+				
+				JPanel panel = (JPanel)chessBoard.getComponent(56 + i);
+				panel.remove(0);
+				panel.add( new JLabel( new ImageIcon("C:/Users/cjmckee/Pictures/pieces/Chess_qdt60.png") ));
+				
+				board.addPiece(temp);
+			}
 		}
 	}
 	

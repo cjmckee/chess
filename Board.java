@@ -182,6 +182,8 @@ public class Board {
 			blackPieces.add(p);
 	}
 	
+	
+	
 	public int isCheckmate() {
 		if (findCheck() == 1) {
 			for (int i = 0; i < whitePieces.size(); i++) {
