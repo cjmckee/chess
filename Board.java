@@ -77,6 +77,13 @@ public class Board {
 		}
 	}
 	
+	public Square getKing(PieceColor p) {
+		if (p == PieceColor.WHITE) 
+			return whiteKing;
+		else
+			return blackKing;
+	}
+	
 	public Square getSquare(int x, int y) {
 		return board[x][y];
 	}
@@ -223,5 +230,27 @@ public class Board {
 			return 2;
 		}
 		return 0;
+	}
+	
+	public int colorProtects(PieceColor color, int x, int y) {
+		int protectors = 0;
+		PieceColor tempTurn = getTurn();
+		setTurn(color);
+		if (color == PieceColor.WHITE) {
+			for (int i = 0; i < whitePieces.size(); i++) {
+				if (whitePieces.get(i).protects(this, x, y)) {
+					protectors += 1;
+				}
+			}
+		}
+		else {
+			for (int j = 0; j < blackPieces.size(); j++) {
+				if (blackPieces.get(j).protects(this, x, y)) {
+					protectors += 1;
+				}
+			}
+		}
+		setTurn(tempTurn);
+		return protectors;
 	}
 }

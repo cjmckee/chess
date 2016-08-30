@@ -128,9 +128,7 @@ public abstract class Piece {
 				undoMove(board, x, y, tempPiece, tempX, tempY);
 				
 				return false;
-			}
-			moved = true;
-			
+			}			
 			return true;
 		}
 		return false;
@@ -161,6 +159,23 @@ public abstract class Piece {
 		for (int i = 0; i < list.size(); i++)
 		{
 			System.out.println(type + ": " + list.get(i).getX() + " " + list.get(i).getY());
+		}
+	}
+	
+	public boolean protects (Board board, int x, int y) {
+		int prevX = this.getX();
+		int prevY = this.getY();
+		Piece temp = board.getSquare(x, y).getPiece();
+		board.getSquare(x, y).setPiece(null);
+		
+		if (this.move(board, x, y)) {
+			this.undoMove(board, x, y, null, prevX, prevY);
+			board.getSquare(x,y).setPiece(temp);
+			return true;
+		}
+		else {
+			board.getSquare(x, y).setPiece(temp);
+			return false;
 		}
 	}
 	

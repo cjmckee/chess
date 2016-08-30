@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class King extends Piece{
 	
 	public King() {
-		super(100, 0, 0, "King", null);
+		super(1, 0, 0, "King", null);
 	}
 	
 	public King(PieceColor c, int row, int col) {
-		super(100, row, col, "King", c);
+		super(1, row, col, "King", c);
 	}
 	
 	public ArrayList<Square> getMoves(Board board) {
@@ -43,5 +43,26 @@ public class King extends Piece{
 				moves.add(board.getSquare(x-2, y));
 			
 		return moves;
+	}
+	
+	public boolean protects (Board board, int x, int y) {
+		if (x == getX()+1 && y == getY())
+			return true;
+		if (x == getX()+1 && y == getY()+1)
+			return true;
+		if (x == getX()+1 && y == getY()-1)
+			return true;
+		if (x == getX() && y == getY()+1)
+			return true;
+		if (x == getX() && y == getY()-1)
+			return true;
+		if (x == getX()-1 && y == getY()+1)
+			return true;
+		if (x == getX()-1 && y == getY())
+			return true;
+		if (x == getX()-1 && y == getY()-1)
+			return true;
+		
+		return false;
 	}
 }

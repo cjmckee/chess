@@ -41,81 +41,81 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			  square.setBackground( i % 2 == 0 ? Color.white : Color.gray );
 			  }
 		  
-		  JLabel piece = new JLabel( new ImageIcon("Chess_rdt60.png") );
+		  JLabel piece = new JLabel( new ImageIcon("src/chess/Chess_rdt60.png") );
 		  JPanel panel = (JPanel)chessBoard.getComponent(0);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_ndt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_ndt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(1);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_bdt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_bdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(2);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_kdt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_kdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(3);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_qdt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_qdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(4);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_bdt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_bdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(5);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_ndt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_ndt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(6);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_rdt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_rdt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(7);
 		  panel.add(piece);
 		  
 		  for (int i = 8; i < 16; i++)
 		  {
-			  piece = new JLabel( new ImageIcon("Chess_pdt60.png") );
+			  piece = new JLabel( new ImageIcon("src/chess/Chess_pdt60.png") );
 			  panel = (JPanel)chessBoard.getComponent(i);
 			  panel.add(piece);
 		  }
 		  
 		  for (int i = 48; i < 56; i++)
 		  {
-			  piece = new JLabel( new ImageIcon("Chess_plt60.png") );
+			  piece = new JLabel( new ImageIcon("src/chess/Chess_plt60.png") );
 			  panel = (JPanel)chessBoard.getComponent(i);
 			  panel.add(piece);
 		  }
 		  
-		  piece = new JLabel( new ImageIcon("Chess_rlt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_rlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(56);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_nlt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_nlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(57);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_blt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_blt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(58);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_klt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_klt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(59);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_qlt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_qlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(60);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_blt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_blt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(61);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_nlt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_nlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(62);
 		  panel.add(piece);
 		  
-		  piece = new JLabel( new ImageIcon("Chess_rlt60.png") );
+		  piece = new JLabel( new ImageIcon("src/chess/Chess_rlt60.png") );
 		  panel = (JPanel)chessBoard.getComponent(63);
 		  panel.add(piece);
 	}
@@ -130,8 +130,10 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		int boardx = chessBoard.getComponentAt(e.getX(), e.getY()).getX() / 75;
 		int boardy = chessBoard.getComponentAt(e.getX(), e.getY()).getY() / 75;
 		current = board.getSquare(boardx, boardy).getPiece();
-		if (current != null)
+		if (current != null) {
 			System.out.println(current.getType());
+			System.out.println(board.colorProtects(current.getColor(), boardx, boardy));
+		}
 		
 		original = c.getParent().getLocation();
 		xMove = original.x - e.getX();
@@ -165,7 +167,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		  int boardx = chessBoard.getComponentAt(e.getX(), e.getY()).getX() / 75;
 		  int boardy = chessBoard.getComponentAt(e.getX(), e.getY()).getY() / 75;
 		  
-		  boolean castleFlag = ((boardx == current.getX() - 2) && current.getType().equals("King"));
+		  boolean castleFlag = current != null && current.getType().equals("King") && (boardx == current.getX() - 2);
 		  
 		  boolean pieceMove = current.move(board, boardx, boardy);
 		  
@@ -183,6 +185,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				  castle(current.getColor());
 			  }
 			  upgrade();
+		
+			  current.moved();
+			  
 			  board.incrementTurn();
 		  }
 		  else {
@@ -215,6 +220,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				  parent.add( chessPiece );
 			  }
 			  upgrade();
+			  bot.getPiece().moved();
 			  board.incrementTurn();
 			  chessPiece.setVisible(true);
 		  }
@@ -244,9 +250,9 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		
 	}
 	
-	public Square botMove() {
+	public Square randomBotMove() {
 		int pieces = board.getPieces(PieceColor.BLACK).size();
-		System.out.println(pieces);
+		//System.out.println(pieces);
 		pieces = (int)(Math.random() * pieces);
 		Piece randomPiece = board.getPieces(PieceColor.BLACK).get(pieces);
 		int moves = randomPiece.getMoves(board).size();
@@ -262,7 +268,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		JPanel panel = (JPanel)chessBoard.getComponent(randomPiece.getY() * 8 + randomPiece.getX());
 		chessPiece = (JLabel)panel.getComponent(0);
 		
-		System.out.println(randomPiece.getX() + ", " + randomPiece.getY());
+		//System.out.println(randomPiece.getX() + ", " + randomPiece.getY());
 		
 		while(!randomPiece.move(board, randomMove.getX(), randomMove.getY())) {
 			pieces = board.getPieces(PieceColor.BLACK).size();
@@ -284,6 +290,128 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 			randomMove = randomPiece.getMoves(board).get(moves);
 		}
 		return randomMove;
+	}
+	
+	public Square botMove() {
+		int i = 0;
+		int x = 0;
+		ArrayList<PieceMove> pieceMoves = findBest();
+		
+		while (x != pieceMoves.size()-1 && pieceMoves.get(x).getScore() + 0.3 >= pieceMoves.get(0).getScore()) {
+			x++;
+		}
+		
+		x = (int)(Math.random() * x);
+		
+		PieceMove tempMove = pieceMoves.get(x);
+		Piece tempPiece = tempMove.getPiece();
+		Square tempSquare = tempMove.getSquare();
+		JPanel panel = (JPanel)chessBoard.getComponent(tempPiece.getY() * 8 + tempPiece.getX());
+		chessPiece = (JLabel)panel.getComponent(0);
+		
+		while (!tempPiece.move(board, tempSquare.getX(), tempSquare.getY())) {
+			tempMove = pieceMoves.get(i);
+			tempPiece = tempMove.getPiece();
+			tempSquare = tempMove.getSquare();
+			panel = (JPanel)chessBoard.getComponent(tempPiece.getY() * 8 + tempPiece.getX());
+			chessPiece = (JLabel)panel.getComponent(0);
+			i++;
+		}
+		System.out.println(tempMove.getScore());
+		return tempSquare;
+	}
+	
+	public ArrayList<PieceMove> findBest() {
+		double moveScore = 0;
+		ArrayList<PieceMove> pieceMoves = new ArrayList<PieceMove>(0);
+		
+		for (int i = 0; i < board.getPieces(PieceColor.BLACK).size(); i++) {
+			
+			ArrayList<Piece> attackingPieces = new ArrayList<Piece>(0);
+			Piece tempPiece = board.getPieces(PieceColor.BLACK).get(i);
+			boolean attacked = false;
+			for (int s = 0; s < board.getPieces(PieceColor.WHITE).size(); s++) {
+				if (board.getPieces(PieceColor.WHITE).get(s).givesCheck(board, tempPiece.getX(), tempPiece.getY())) {
+					attacked = true;
+					attackingPieces.add(board.getPieces(PieceColor.WHITE).get(s));
+				}
+			}
+			
+			for (int j = 0; j < attackingPieces.size(); j++) {
+				for (int k = j; k > 0; k--) {
+					if (attackingPieces.get(k).getPoints() < attackingPieces.get(k-1).getPoints()) {
+						Piece sortPiece = attackingPieces.get(k);
+						attackingPieces.set(k, attackingPieces.get(k-1));
+						attackingPieces.set(k-1, sortPiece);
+					}
+				}
+			}
+			
+			
+			for (int j = 0; j < board.getPieces(PieceColor.BLACK).get(i).getMoves(board).size(); j++) {
+				Square tempSquare = tempPiece.getMoves(board).get(j);
+				
+				if (attacked) {
+					moveScore += tempPiece.getPoints();
+					if (board.colorProtects(tempPiece.getColor(), tempSquare.getX(), tempSquare.getY()) > 0)
+						moveScore -= attackingPieces.get(0).getPoints();
+				}
+				
+				//AI calculations yay
+				//precedence to unmoved pieces
+				if (!tempPiece.hasMoved()) {
+					moveScore += 1;
+				}
+				
+				//attacking pieces
+				if (tempSquare.isOccupied() && tempSquare.getPiece().getColor() != tempPiece.getColor()) {
+					moveScore += tempSquare.getPiece().getPoints();
+					if (board.colorProtects(tempPiece.getColor(), tempSquare.getX(), tempSquare.getY()) > 1) {
+						moveScore += 2;
+					}
+				}
+				
+				//if spot is protected, don't move there dummy
+				if (board.colorProtects(PieceColor.WHITE, tempSquare.getX(), tempSquare.getY()) > 0) {
+					moveScore -= tempPiece.getPoints();
+				}
+				
+				//find check
+				int prevX = tempPiece.getX();
+				int prevY = tempPiece.getY();
+				Piece prevPiece = tempSquare.getPiece();
+				
+				int numMoves = tempPiece.getMoves(board).size();
+				
+				tempPiece.move(board, tempSquare.getX(), tempSquare.getY());
+				
+				moveScore += (double)(tempPiece.getMoves(board).size() - numMoves) / 20;
+				
+				if (tempPiece.givesCheck(board, board.getKing(PieceColor.WHITE).getX(), board.getKing(PieceColor.WHITE).getY())) {
+					moveScore += 5;
+				}
+				tempPiece.undoMove(board, tempSquare.getX(), tempSquare.getY(), prevPiece, prevX, prevY);
+				
+				//create move
+				PieceMove move = new PieceMove(tempPiece, tempSquare);
+				move.setScore(moveScore);
+				
+				pieceMoves.add(move);
+				moveScore = 0;
+			}
+		}
+		//sort
+		for (int j = 0; j < pieceMoves.size(); j++) {
+			for (int k = j; k > 0; k--) {
+				if (pieceMoves.get(k).getScore() > pieceMoves.get(k-1).getScore()) {
+					PieceMove temp = pieceMoves.get(k);
+					pieceMoves.set(k, pieceMoves.get(k-1));
+					pieceMoves.set(k-1, temp);
+				}
+			}
+		}
+		
+		return pieceMoves;
 	}
 	
 	public void castle(PieceColor p) {
@@ -334,7 +462,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				
 				JPanel panel = (JPanel)chessBoard.getComponent(i);
 				panel.remove(0);
-				panel.add( new JLabel( new ImageIcon("Chess_qlt60.png") ));
+				panel.add( new JLabel( new ImageIcon("src/chess/Chess_qlt60.png") ));
 				
 				board.addPiece(temp);
 			}
@@ -346,7 +474,7 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 				
 				JPanel panel = (JPanel)chessBoard.getComponent(56 + i);
 				panel.remove(0);
-				panel.add( new JLabel( new ImageIcon("Chess_qdt60.png") ));
+				panel.add( new JLabel( new ImageIcon("src/chess/Chess_qdt60.png") ));
 				
 				board.addPiece(temp);
 			}
@@ -361,7 +489,4 @@ public class ChessGame extends JFrame implements MouseListener, MouseMotionListe
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
-	
-
 }

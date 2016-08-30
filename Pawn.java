@@ -48,5 +48,24 @@ public class Pawn extends Piece{
 			
 		return moves;
 	}
+	
+	public boolean protects (Board board, int x, int y) {
+		if (color == PieceColor.BLACK) {
+			if ((x == this.getX()+1 && y == this.getY() + 1) || (x == this.getX()-1 && y == this.getY() + 1)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			if ((x == this.getX()+1 && y == this.getY() - 1) || (x == this.getX()-1 && y == this.getY() - 1)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
 
 }
